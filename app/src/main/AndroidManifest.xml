@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".uis.MainActivity"/>
+        <activity android:name=".uis.VoteActivity"/>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class GsonDateFormatAdapter implements JsonSerializer<Date>, JsonDeserial
     private final DateFormat dateFormat;
 
     public GsonDateFormatAdapter() {
-        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ", Locale.KOREA);
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.KOREA);
         dateFormat.setTimeZone(TimeZone.getTimeZone("KST"));
     }
 

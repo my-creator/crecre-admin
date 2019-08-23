@@ -1,4 +1,4 @@
-package com.crecre.admin.retrofit;
+package com.crecre.admin.retrofit.services;
 
 import com.crecre.admin.retrofit.messages.requests.SignInRequest;
 import com.crecre.admin.retrofit.messages.responses.SignInResponse;

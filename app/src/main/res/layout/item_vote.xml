@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.crecre.admin.models.vote.VoteData" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="14dp"
+        android:background="@drawable/background_rounding6"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="212dp"
+                android:background="#ccffffff">
+
+                <ImageView
+                    android:id="@+id/img_vote_item_thumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:padding="30dp"
+                    android:src="@drawable/icn_stamp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/txt_vote_item_day_left"
+                        android:layout_width="80dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/vote_round_pink_rect"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txt_vote_item_status"
+                        android:layout_width="80dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/vote_round_mint_rect"
+                        android:fontFamily="@font/noto_sans_kr_medium"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/rv_vote_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/noto_sans_kr_regular"
+                android:text="@{item.title}"
+                android:textSize="18sp"
+                app:lineHeight="24sp" />
+
+            <TextView
+                android:id="@+id/rv_vote_item_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:text="# 이 투표에 대한 운영자의 서브 설명"
+                android:textColor="@color/brownish_grey"
+                android:textSize="14sp"
+                app:lineHeight="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/pale_grey" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_vote_item_choices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+            <Button
+                android:id="@+id/btn_vote_item_add_choice"
+                android:layout_width="288dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_round"
+                android:text=" + "
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/violet_pink" />
+
+            <Button
+                android:id="@+id/btn_vote_item_permit"
+                android:layout_width="288dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_round"
+                android:text="투표 올리기"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/violet_pink"
+                android:layout_marginBottom="32dp"
+                />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>

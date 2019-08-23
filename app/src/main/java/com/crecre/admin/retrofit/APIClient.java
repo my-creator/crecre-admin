@@ -1,11 +1,14 @@
 package com.crecre.admin.retrofit;
 
+import com.crecre.admin.retrofit.services.BoardService;
+import com.crecre.admin.retrofit.services.UserService;
+import com.crecre.admin.retrofit.services.VoteService;
 import com.crecre.admin.utils.GsonDateFormatAdapter;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import lombok.Getter;
 import okhttp3.OkHttpClient;
@@ -18,24 +21,21 @@ public class APIClient {
     private static final String BASE_URL = "15.164.106.239";
     private static APIClient instance;
     private UserService userService;
+    private VoteService voteService;
+    private BoardService boardService;
+
+    private OkHttpClient okHttp;
+    private Retrofit retrofit;
+    private Gson gson;
 
     private APIClient() {
-        Gson gson = new GsonBuilder()
+        gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new GsonDateFormatAdapter())
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
 
-        OkHttpClient okHttp = new OkHttpClient.Builder()
-                .addInterceptor(new MyInterceptor())
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(getAPIServer())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(okHttp)
-                .build();
-
-        userService = retrofit.create(UserService.class);
+        init("");
     }
 
     private String getAPIServer() {
@@ -51,5 +51,21 @@ public class APIClient {
             }
         }
         return instance;
+    }
+
+    public void init(String token) {
+        okHttp = new OkHttpClient.Builder()
+                .addInterceptor(new MyInterceptor(token))
+                .build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl(getAPIServer())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttp)
+                .build();
+
+        userService = retrofit.create(UserService.class);
+        voteService = retrofit.create(VoteService.class);
+        boardService = retrofit.create(BoardService.class);
     }
 }

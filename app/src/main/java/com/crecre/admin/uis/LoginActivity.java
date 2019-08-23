@@ -63,8 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 Alert.makeText("로그인 성공");
 
+                                APIClient.getInstance().init(response.body().getData().getToken().getToken());
+
                                 finish();
-                            }else{
+                            } else {
                                 Alert.makeText("로그인 실패");
                             }
                         }
