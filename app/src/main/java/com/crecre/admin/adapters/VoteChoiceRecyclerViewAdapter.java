@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.crecre.admin.R;
 import com.crecre.admin.adapters.viewholders.VoteChoiceViewHolder;
 import com.crecre.admin.databinding.ItemVoteChoiceBinding;
 import com.crecre.admin.models.vote.VoteChoice;
@@ -14,12 +15,12 @@ import com.crecre.admin.models.vote.VoteData;
 
 import java.util.List;
 
-public class VoteItemRecyclerViewAdapter extends RecyclerView.Adapter<VoteChoiceViewHolder> {
+public class VoteChoiceRecyclerViewAdapter extends RecyclerView.Adapter<VoteChoiceViewHolder> {
 
     private final VoteData voteData;
     private List<VoteChoice> choiceList;
 
-    public VoteItemRecyclerViewAdapter(VoteData voteData) {
+    public VoteChoiceRecyclerViewAdapter(VoteData voteData) {
         this.voteData = voteData;
         this.choiceList = voteData.getChoices();
     }
@@ -41,10 +42,32 @@ public class VoteItemRecyclerViewAdapter extends RecyclerView.Adapter<VoteChoice
         ItemVoteChoiceBinding binding = holder.bind(item);
 
         if (voteData.getType() == VoteData.VoteType.NORMAL) {
-            binding.imgVoteChoiceItem.setVisibility(View.GONE);
+            binding.cvVoteChoiceItemProfile.setVisibility(View.GONE);
+            binding.imgVoteChoiceItemRank.setVisibility(View.GONE);
         } else if (item.getCreatorProfileUrl() != null) {
-            Glide.with(holder.itemView).load(item.getCreatorProfileUrl()).into(binding.imgVoteChoiceItem);
+            binding.cvVoteChoiceItemProfile.setVisibility(View.VISIBLE);
+            binding.imgVoteChoiceItemRank.setVisibility(View.VISIBLE);
+            Glide.with(holder.itemView).load(item.getCreatorProfileUrl()).into(binding.imgVoteChoiceItemProfile);
+            Glide.with(holder.itemView).load(item.getFollowerGradeImgUrl()).into(binding.imgVoteChoiceItemRank);
         }
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.btn_vote_choice_item_update:
+
+                        break;
+                    case R.id.btn_vote_choice_item_delete:
+
+                        break;
+                }
+            }
+        };
+
+        binding.btnVoteChoiceItemUpdate.setOnClickListener(onClickListener);
+        binding.btnVoteChoiceItemDelete.setOnClickListener(onClickListener);
+
+
     }
 
     @Override
