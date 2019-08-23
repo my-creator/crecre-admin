@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">CrecreAdmin</string>
+    <string name="app_name">크리크리 관리자</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_profile_join">ProfileJoin</string>
+    <string name="title_activity_profile_join_stat">ProfileJoinStatActivity</string>
+    <string name="notYetAccount">아직 크리크리 회원이 아니신가요?</string>
+    <string name="signupInAMinute">1분만에 회원가입하기</string>
+    <string name="signin">로그인</string>
+    <string name="password">비밀번호</string>
+    <string name="id">아이디</string>
 </resources>
